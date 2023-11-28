@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.9.20"
 	kotlin("plugin.spring") version "1.9.20"
 	kotlin("plugin.jpa") version "1.9.20"
+	kotlin("plugin.noarg") version "1.9.20"
 }
 
 group = "com.example"
@@ -19,6 +20,10 @@ repositories {
 	mavenCentral()
 }
 
+noArg {
+	annotation("jakarta.persistence.Entity")
+}
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -26,6 +31,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("com.h2database:h2")
 }
 
 tasks.withType<KotlinCompile> {
