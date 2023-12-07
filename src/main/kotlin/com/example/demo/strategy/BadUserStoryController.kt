@@ -20,19 +20,3 @@ class BadUserStoryController(
         return userStoryService.getBacklogSeparatedByVelocity()
     }
 }
-
-@RestController
-@RequestMapping("/api/good/stories")
-class GoodUserStoryController(
-    val userStoryService: GoodUserStoryService
-) {
-    @GetMapping("/backlog")
-    fun getBacklog(): List<UserStory> {
-        return userStoryService.getBacklog(DoNothingConverter())
-    }
-
-    @GetMapping("/v2/backlog")
-    fun getBacklogV2(): List<List<UserStory>> {
-        return userStoryService.getBacklog(SeparateByVelocityConverter())
-    }
-}
